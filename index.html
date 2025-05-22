@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEOFIT - Registro y Selección</title>
+    <link rel="stylesheet" href="css/styles.css">
+     <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+    window.firebaseApp = initializeApp({
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_AUTH_DOMAIN",
+      projectId: "TU_PROJECT_ID",
+      storageBucket: "TU_STORAGE_BUCKET",
+      messagingSenderId: "TU_MESSAGING_SENDER_ID",
+      appId: "TU_APP_ID"
+    });
+    window.firebaseDb = getFirestore(firebaseApp);
+    window.firebaseFirestore = { collection, addDoc, getDocs };
+  </script>
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="NEOFIT Logo">
+        <h1>Bienvenido a NEOFIT</h1>
+    </header>
+
+    <main>
+  <!-- Formulario de registro de usuario -->
+<section id="registrationSection">
+    <h2>Registro de Usuario</h2>
+    <form id="registerForm">
+         <div class="form-group">
+                        <label for="fullName">Nombre Completo</label>
+                        <input type="text" id="fullName" placeholder="Nombre Completo" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Edad</label>
+                        <input type="number" id="age" placeholder="Edad" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate">Fecha de Nacimiento</label>
+                        <input type="date" id="birthDate" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Peso (kg)</label>
+                        <input type="number" id="weight" placeholder="Peso (kg)" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="height">Altura (cm)</label>
+                        <input type="number" id="height" placeholder="Altura (cm)" required />
+                    </div>
+        <button type="button" id="nextBtn" class="btn">Siguiente</button>
+    </form>
+    <p id="statusMessage"></p>
+</section>
+
+<!-- Formulario de selección de preferencias -->
+<section id="selectionSection" style="display: none;">
+    <h2>Selecciona tus Preferencias</h2>
+    <div class="form-group">
+                <label for="routineType">Tipo de Rutina</label>
+                <select id="routineType">
+                   <option value="" disabled selected>Selecciona una rutina</option>
+                    <option value="Fuerza">Fuerza</option>
+                    <option value="Cardio">Cardio</option>
+                    <option value="Flexibilidad">Flexibilidad</option>
+                    <option value="Resistencia">Resistencia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="classType">Tipo de Clase</label>
+                <select id="classType">
+                    <option value="Yoga">Yoga</option>
+                    <option value="Pilates">Pilates</option>
+                    <option value="Zumba">Zumba</option>
+                    <option value="Crossfit">Crossfit</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mealPlan">Plan de Alimentación</label>
+                <select id="mealPlan">
+                    <option value="" disabled selected>Selecciona un plan de alimentación</option>
+                    <option value="Baja en carbohidratos">Baja en carbohidratos</option>
+                    <option value="Alta en proteínas">Alta en proteínas</option>
+                    <option value="Vegetariana">Vegetariana</option>
+                    <option value="Balanceada">Balanceada</option>
+                    <option value="Cetogénica">Cetogénica</option>
+                </select>
+            </div>
+    <button id="saveSelection" class="btn">Guardar Selección</button>
+    <button id="downloadDB" type="button" class="btn">Descargar BD (JSON)</button>
+</section>
+    </main>
+
+    <footer>
+        &copy; 2025 NEOFIT - Todos los derechos reservados
+    </footer>
+
+    <script type="module" src="js/register.js"></script>
+</body>
+</html>
